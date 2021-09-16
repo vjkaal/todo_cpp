@@ -60,8 +60,20 @@ void taskHandler::alterTask()
 void taskHandler::setJob()
 {
     std::string job = "";
+
+    taskCreation:
     std::cout<<"Enter task: ";
-    std::getline(std::cin,job);
+    try
+    {
+        std::getline(std::cin,job);
+        if(job.size() == 0) throw(0);
+    }
+    catch(int stringlength)
+    {
+        std::cout<<"Empty String passed, plz mention job...\n";
+        goto taskCreation;
+    }
+
 
     t.text = job;
 }
