@@ -23,12 +23,13 @@ class taskHandler
 
         void createTask();
         void displayTask();
+        void alterTask();
         void deleteTask();
 
         void setJob();
         std::string getJob();
 
-        void setCompleted();
+        void setCompleted(bool);
         std::string getCompleted();
 
 };
