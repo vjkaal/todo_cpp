@@ -25,7 +25,7 @@ void taskHandler::createTask()
 
 void taskHandler::displayTask()
 {
-    std::cout<<"Task Status...\n";
+    std::cout<<"\n\nTask Status...\n";
     std::cout<<"\nJob: "<<getJob();
     std::cout<<"\nCompleted: "<<getCompleted();
     std::cout<<"\n"<<std::endl;
@@ -42,7 +42,7 @@ void taskHandler::alterTask()
     char boolean = 'n';
     //boolean variable to store bool
 
-    std::cout<<"Change job: y\n ";
+    std::cout<<"Change job? y/n ";
     std::cin>>boolean;
     std::cin.ignore();
     if(tolower(boolean) == 'y') setJob();
