@@ -17,7 +17,7 @@ class taskHandler
     protected:
 
     public:
-        task t;
+        task *t = new task;
         taskHandler();
         virtual ~taskHandler();
 

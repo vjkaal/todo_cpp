@@ -30,11 +30,21 @@ void taskHandler::displayTask()
     std::cout<<"\nCompleted: "<<getCompleted();
     std::cout<<"\n"<<std::endl;
 
-    char boolean = 'n';
-    std::cout<<"Alter task? y/n ";
-    std::cin>>boolean;
+
+    choose:
+
+    int choice = 0;
+
+    std::cout<<"Alter task? 1";
+    std::cout<<"\nDelete task? 2";
+    std::cin>>choice;
     std::cin.ignore();
-    if(tolower(boolean) == 'y') alterTask();
+    if(choice == 1) alterTask();
+    else if(choice == 2) deleteTask();
+    else{
+        std::cout<<"plz be reasonable in life!\n";
+        goto choose;
+    }
 }
 
 void taskHandler::alterTask()
@@ -47,13 +57,22 @@ void taskHandler::alterTask()
     std::cin.ignore();
     if(tolower(boolean) == 'y') setJob();
 
-    std::cout<<"Job Completed?: y/n";
+    std::cout<<"Job Completed?: y/n ";
     std::cin>>boolean;
     std::cin.ignore();
     if(tolower(boolean) == 'y') setCompleted(true);
 
     displayTask();
 }
+
+
+void taskHandler::deleteTask()
+{
+    t->text = "";
+    t->completed = false;
+    std::cout<<"\nTask Deleted Successfully\n";
+}
+
 
 
 // task text here
@@ -75,13 +94,13 @@ void taskHandler::setJob()
     }
 
 
-    t.text = job;
+    t->text = job;
 }
 
 
 std::string taskHandler::getJob()
 {
-    return t.text;
+    return t->text;
 }
 
 
@@ -89,11 +108,11 @@ std::string taskHandler::getJob()
 // task completed status here
 std::string taskHandler::getCompleted()
 {
-    return (t.completed)?"true":"false";
+    return (t->completed)?"true":"false";
 }
 
 
 void taskHandler::setCompleted(bool value)
 {
-    t.completed = value;
+    t->completed = value;
 }
