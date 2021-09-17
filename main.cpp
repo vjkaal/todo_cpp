@@ -1,16 +1,21 @@
 #include<iostream>
 #include<list>
+#include<stdlib.h>
+
+
+std::list<int> l;
+int i = 0;
+
+void createNewElem()
+{
+    l.push_back(i);
+    i++;
+}
 
 
 void readList()
 {
-
-    std::cout<<"Plz be patient\n";
-}
-
-void createNewElem()
-{
-    std::cout<<"Plz be patient\n";
+    for(int x:l) std::cout<<x<<std::endl;
 }
 
 
@@ -18,17 +23,18 @@ int menuBar()
 {
 
     std::cout<<"\n----------------TO DO----------------\n\n";
-    std::cout<<"See all Deadlines: Press 0\n";
     std::cout<<"Create new Deadline: Press 1\n";
+    std::cout<<"See all Deadlines: Press 2\n";
+    std::cout<<"Exit: Press 0\n\n";
 
     int choice = 0;
 
-    input:
+input:
     std::cout<<"Enter choice: ";
     try
     {
         std::cin>>choice;
-        if(choice < 0 || choice > 1) throw choice;
+        if(choice < 0 || choice > 2) throw choice;
     }
     catch(int wrong)
     {
@@ -43,17 +49,23 @@ int menuBar()
 
 void start()
 {
-    std::list<int> l;
 
     //int res = menuBar();
 
-    switch(menuBar())
+    while(1)
     {
-        case 0: readList();break;
 
-        case 1: createNewElem();break;
+        switch(menuBar())
+        {
+            case 1: createNewElem(); break;
 
-        default: break;
+            case 2: readList(); break;
+
+            case 0: exit(86); break;
+
+            default: break;
+        }
+
     }
 
 }
