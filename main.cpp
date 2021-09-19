@@ -2,12 +2,15 @@
 #include<list>
 #include<stdlib.h>
 
+#include "inc/taskHandler.h"
 
-std::list<int> l;
-int i = 0;
+
+std::list<taskHandler* > l;
 
 void createNewElem()
 {
+    taskHandler *i = new taskHandler();
+    i->createTask();
     l.push_back(i);
     i++;
 }
@@ -15,7 +18,8 @@ void createNewElem()
 
 void readList()
 {
-    for(int x:l) std::cout<<x<<std::endl;
+    std::cout<<"sorry for inconvenience\n";
+    //for(taskHandler *x:l) *x->displayTask();
 }
 
 
@@ -34,6 +38,7 @@ input:
     try
     {
         std::cin>>choice;
+        std::cin.ignore();
         if(choice < 0 || choice > 2) throw choice;
     }
     catch(int wrong)
