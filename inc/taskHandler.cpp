@@ -25,12 +25,10 @@ void taskHandler::createTask()
 
 void taskHandler::displayTask()
 {
-    std::cout<<"\n\nTask Status...\n";
-    std::cout<<"\nJob: "<<getJob();
-    std::cout<<"\nCompleted: "<<getCompleted();
-    std::cout<<"\n"<<std::endl;
+    std::cout<<"\nTask: "<<getJob()<<"\nStatus: "<<getCompleted();
 
 
+    /*
     choose:
 
     int choice = 0;
@@ -45,22 +43,42 @@ void taskHandler::displayTask()
         std::cout<<"plz be reasonable in life!\n";
         goto choose;
     }
+    */
 }
 
 void taskHandler::alterTask()
 {
-    char boolean = 'n';
-    //boolean variable to store bool
+    int choice = 0;
 
-    std::cout<<"Change job? y/n ";
-    std::cin>>boolean;
-    std::cin.ignore();
-    if(tolower(boolean) == 'y') setJob();
 
-    std::cout<<"Job Completed?: y/n ";
-    std::cin>>boolean;
-    std::cin.ignore();
-    if(tolower(boolean) == 'y') setCompleted(true);
+    taskAlteration:
+    std::cout<<"\n\nChange Job? (Press 1)";
+    std::cout<<"\nJob Completed?: (Press 2)";
+    std::cout<<"\nDelete Job? (Press 3)";
+    std::cout<<"\nBack: (Press 0)";
+    std::cout<<"\nEnter your choice";
+    try
+    {
+        std::cin>>choice;
+        std::cin.ignore();
+        if(choice < 0 || choice > 3) throw(choice);
+    }
+    catch(int wrong)
+    {
+        std::cout<<"Plz be reasonable in life\n";
+        goto taskAlteration;
+    }
+
+
+
+    switch(choice)
+    {
+        case 1: setJob();break;
+        case 2: setCompleted(true);break;
+        case 3: deleteTask();
+        default:
+        case 0: break;
+    }
 
     displayTask();
 }
@@ -68,8 +86,8 @@ void taskHandler::alterTask()
 
 void taskHandler::deleteTask()
 {
-    t->text = "";
-    t->completed = false;
+    this->t->text = "";
+    this->t->completed = false;
     std::cout<<"\nTask Deleted Successfully\n";
 }
 
@@ -94,13 +112,13 @@ void taskHandler::setJob()
     }
 
 
-    t->text = job;
+    this->t->text = job;
 }
 
 
 std::string taskHandler::getJob()
 {
-    return t->text;
+    return this->t->text;
 }
 
 
@@ -108,11 +126,12 @@ std::string taskHandler::getJob()
 // task completed status here
 std::string taskHandler::getCompleted()
 {
-    return (t->completed)?"true":"false";
+    if(this->t->text == "") return "";
+    return (this->t->completed)?"finished":"plz finish This";
 }
 
 
 void taskHandler::setCompleted(bool value)
 {
-    t->completed = value;
+    this->t->completed = value;
 }
