@@ -23,7 +23,7 @@ class taskHandler
 
         void createTask();
         void displayTask();
-        void alterTask();
+        bool alterTask();
         void deleteTask();
 
         void setJob();

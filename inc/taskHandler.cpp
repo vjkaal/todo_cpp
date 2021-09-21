@@ -46,7 +46,8 @@ void taskHandler::displayTask()
     */
 }
 
-void taskHandler::alterTask()
+
+bool taskHandler::alterTask()
 {
     int choice = 0;
 
@@ -75,7 +76,7 @@ void taskHandler::alterTask()
     {
         case 1: setJob();break;
         case 2: setCompleted(true);break;
-        case 3: deleteTask();
+        case 3: deleteTask(); return true;
         default:
         case 0: break;
     }

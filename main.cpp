@@ -59,7 +59,7 @@ void readList()
         {
             if(i == choice-1)
             {
-                x->alterTask();
+                if(x->alterTask()) l.remove(x);
                 break;
             }
             i++;
